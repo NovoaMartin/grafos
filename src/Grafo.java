@@ -100,8 +100,8 @@ public class Grafo {
 
         cola.add(new Arista(0, nodoInicial, 0));
         distancias[nodoInicial] = 0;
-        while (!cola.isEmpty()) {               // O(V)
-            Arista arista = cola.poll();        //O(log(V))
+        while (!cola.isEmpty()) {               // O(E)
+            Arista arista = cola.poll();        //O(log(E))
             if (visitados[arista.getHasta()]) continue;
 
             int nodoActual = arista.getHasta();
@@ -111,7 +111,7 @@ public class Grafo {
             for (Arista aristaAdyacente : listaDeAdyacencia.get(nodoActual)) { // O(V)
                 if (!visitados[aristaAdyacente.getHasta()] && distancias[aristaAdyacente.getHasta()] > distancias[nodoActual] + aristaAdyacente.getCosto()) {
                     distancias[aristaAdyacente.getHasta()] = distancias[nodoActual] + aristaAdyacente.getCosto();
-                    cola.add(new Arista(0, aristaAdyacente.getHasta(), distancias[aristaAdyacente.getHasta()])); // O(log(V))
+                    cola.add(new Arista(0, aristaAdyacente.getHasta(), distancias[aristaAdyacente.getHasta()])); // O(log(E))
                 }
             }
         }
